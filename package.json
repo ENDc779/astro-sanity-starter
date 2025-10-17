@@ -9,7 +9,8 @@
         "astro": "astro",
         "create-project": "node ./sanity-export/create-project.js",
         "import": "node ./sanity-export/import.js",
-        "export": "node ./sanity-export/export.js"
+        "export": "node ./sanity-export/export.js",
+        "telegram:auto-order": "node ./scripts/autoOrderBot.js"
     },
     "dependencies": {
         "@astrojs/tailwind": "^5.1.0",
