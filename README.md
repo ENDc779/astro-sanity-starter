@@ -100,3 +100,44 @@ Here are a few suggestions on what to do next if you're new to Netlify visual ed
 ## Support
 
 If you get stuck along the way, get help in our [support forums](https://answers.netlify.com/).
+
+## Telegram 自动补单机器人
+
+仓库中提供了一个简单的 Telegram 机器人脚本，支持自动补单、统计查询以及定时巡检功能。脚本位于 `scripts/autoOrderBot.js`，默认读取 `data/orders.json` 作为订单数据存储。
+
+### 快速开始
+
+1. 在 Telegram 中创建机器人并获取 `TELEGRAM_BOT_TOKEN`（使用 [@BotFather](https://core.telegram.org/bots#botfather)）。
+2. 在项目根目录创建 `.env.local`（或直接导出环境变量），至少包含以下内容：
+
+   ```bash
+   TELEGRAM_BOT_TOKEN="你的机器人 Token"
+   TELEGRAM_NOTIFY_CHAT_ID="接收通知的聊天 ID"
+   AUTO_FILL_TARGET_COMPLETED="30" # 可选，默认补单目标
+   AUTO_FILL_INTERVAL_MINUTES="15" # 可选，定时任务间隔（分钟）
+   TELEGRAM_ALLOWED_CHAT_IDS="123456789,987654321" # 可选，限制可用的聊天 ID
+   ```
+
+   > `ORDER_DATA_FILE` 可选，如果需要自定义订单数据文件路径，可设置此变量。
+
+3. 运行脚本：
+
+   ```bash
+   node scripts/autoOrderBot.js
+   ```
+
+4. 在 Telegram 中向机器人发送以下命令体验功能：
+
+   - `/start` 或 `/help`：查看帮助信息。
+   - `/stats`：查看今日及累计统计。
+   - `/fill <目标> [模板] [备注]`：根据目标自动补单。
+   - `/补单 <目标> [模板] [备注]`：与 `/fill` 相同的中文命令。
+   - `/templates`：查看可用模板列表。
+
+### 数据存储说明
+
+- `data/orders.json` 保存历史订单及模板配置，机器人自动补单会将新订单写回该文件。
+- 可以在 `templates` 数组中配置多个补单模板，通过 `isDefault: true` 指定默认模板。
+- 手动编辑订单或模板后，重启机器人即可读取最新配置。
+
+> 机器人脚本依赖 Node.js v18+ 提供的原生 `fetch`，请确保运行环境满足 README 顶部的 Node.js 要求。

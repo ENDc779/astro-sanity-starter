@@ -1,0 +1,39 @@
+{
+  "orders": [
+    {
+      "id": "20240601-001",
+      "status": "completed",
+      "createdAt": "2024-06-01T08:30:00.000Z",
+      "customer": "示例客户",
+      "items": 2,
+      "note": "演示订单，供机器人统计使用",
+      "autoFilled": false
+    },
+    {
+      "id": "20240601-002",
+      "status": "pending",
+      "createdAt": "2024-06-01T11:45:00.000Z",
+      "customer": "线下客户",
+      "items": 1,
+      "note": "等待人工处理",
+      "autoFilled": false
+    }
+  ],
+  "templates": [
+    {
+      "name": "standard",
+      "isDefault": true,
+      "customer": "商城散客",
+      "items": 1,
+      "note": "常规补单",
+      "description": "默认模板"
+    },
+    {
+      "name": "vip",
+      "customer": "VIP 会员",
+      "items": 3,
+      "note": "高价值补单",
+      "description": "适用于重要客户"
+    }
+  ]
+}
